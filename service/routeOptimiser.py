@@ -76,7 +76,6 @@ def main():
         print(f"No path found from {source} to {target}")
     
 
-#    visualize_graph(graph, path)
 
 
 def visualize_graph(graph, path=None):
