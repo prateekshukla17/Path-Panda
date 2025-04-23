@@ -5,7 +5,7 @@ const getTrains = async function (from, to, date) {
   const options = {
     method: 'GET',
     headers: {
-      'x-rapidapi-key': process.env.xrapid_apikey,
+      'x-rapidapi-key': '13d55b931dmsh3b98ba60ba1193fp188130jsnae3496302518',
       'x-rapidapi-host': 'irctc1.p.rapidapi.com',
     },
   };
@@ -18,8 +18,6 @@ const getTrains = async function (from, to, date) {
     const trains = fetched_data.data?.map((train) => ({
       train_name: train.train_name,
       train_number: train.train_number,
-      from: train.from,
-      to: train.to,
     }));
 
     return trains;
