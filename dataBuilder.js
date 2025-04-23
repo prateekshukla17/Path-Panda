@@ -1,4 +1,4 @@
-const { getMinFare } = require('./GetsMinFare');
+const { getMinFare } = require('./dataHandler/GetsMinFare');
 const { dataModel } = require('.../DataBase/RouteMaps.js');
 require('dotenv').config();
 const cities = {
