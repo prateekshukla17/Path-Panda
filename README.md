@@ -9,7 +9,8 @@ Path Panda is a smart routing engine designed to calculate the cheapest (and eve
 ## Architecture of the Application
 
 ![Architecture](Architecture.png)
-Path-Panda is structured into three Components
+
+## Path-Panda is structured into three Components:
 
 ### 1. Data Pipeline
 
@@ -29,24 +30,47 @@ Path-Panda is structured into three Components
 
 This component stores all fare information between city pairs in a clean and searchable format. Example entries:
 
-- <Kanpur-Patiala>
+<Kanpur-Patiala>
 
-- <Delhi-Mumbai>
+<Delhi-Mumbai>
 
-- <CityA-CityB>
+<CityA-CityB>
+
+#### 1.0 Database Schema and Sample Data
+
+![SampleDBData](sampledata_db.png)
 
 ✅ Responsibility: Act as a persistent graph representation where each document corresponds to a direct route between two cities with its fare and transport mode.
 
-### 3. Multimodal Dijkstra Algorithim
+### 3. Modified Dijkstra Algorithim
 
-``- This is the heart of Path-Panda. It reads data from the MongoDB database and creates a graph structure where:
+This is the heart of Path-Panda. It reads data from the MongoDB database and creates a graph structure where:
 Nodes = Cities
 Edges = Direct routes (bus/train) with weights = fare
 
 - Then it applies a modified Dijkstra’s Algorithm to find the cheapest path from the source to destination, considering multiple transport modes.
 
+#### 3.1 Working of Modified Dijkstra to accomadate Mutiple Modes of Travel
+
+we model each city as two nodes:
+
+Example: Kanpur_Train and Kanpur_Bus
+
+🔁 Mode Switch
+Each city has a zero or low-cost edge between its \_Train and \_Bus nodes to allow mode switching (e.g., Delhi_Train ↔ Delhi_Bus).
+
+🗺️ Graph Construction
+
+- Nodes: City_Mode (e.g., Delhi_Bus)
+- Edges: Travel routes with fare as weight (from database)
+- We run a modified Dijkstra’s algorithm:
+- Start from both Source_Train and Source_Bus
+- Explore cheapest path using fares as weights
+- Switch modes when needed
+- Stop at Destination_Train or Destination_Bus
+
+#### A Sample Path:
+
+![SampleGraph](sampleGraph.png)
+
 ✅ Responsibility: Calculate the optimal (cheapest) path across different modes from point A to point B.
-
-### 4. Data Flow Summary
-
-`[DataPipeline] → (fetch + compute fares) → [MongoDB] → (graph building) → [Algorithm → Optimal Path]`
