@@ -1,7 +1,6 @@
 const { getMinFare } = require('./GetsMinFare');
-
 const { dataModel } = require('.../DataBase/RouteMaps.js');
-
+require('dotenv').config();
 const cities = {
   Kanpur: 'CNB',
   NewDelhi: 'NDLS',
@@ -16,7 +15,7 @@ const buildData = async function () {
 
   for (const source of cityNames) {
     for (const destination of cityNames) {
-      if (source == destination) continue;
+      if (source === destination) continue;
 
       const sourceCode = cities[source];
       const destinationCode = cities[destination];

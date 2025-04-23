@@ -3,8 +3,8 @@ import { getFare } from './trainFare';
 
 const { getTrains } = require('./train_api');
 const { getFare } = require('./trainFare');
-const getMinFare = async function (from, to, date) {
-  const trains = await getTrains(from, to, date);
+const getMinFare = async function (from, to) {
+  const trains = await getTrains(from, to);
 
   let minFare = Infinity;
   let bestTrain = null;

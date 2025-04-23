@@ -13,7 +13,7 @@ def data_db():
     mongo_url = os.getenv("mongoURL")
     client = MongoClient(mongo_url)
     db = client['RouteWise']
-    collections = db["routewise"]
+    collections = db["Delhi_to_Mumbai"]
     print('Connected to the Database')
 
     data = list(collections.find())
