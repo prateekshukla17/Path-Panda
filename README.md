@@ -74,3 +74,13 @@ Each city has a zero or low-cost edge between its \_Train and \_Bus nodes to all
 ![SampleGraph](sampleGraph.png)
 
 ✅ Responsibility: Calculate the optimal (cheapest) path across different modes from point A to point B.
+
+### Current Limitations & Future Improvements
+
+- Scalability-Ready: The system is designed to scale, but due to limited API access, it's currently restricted to a set of pre-defined routes.
+
+- Dynamic Junction Discovery: Work is in progress to automate key stopovers between major cities, enhancing route accuracy and flexibility.
+
+- Bus Data Automation: The data pipeline is being improved to automatically fetch and update bus routes and fares via a REST API.
+
+- Flight Integration: Flight routes and pricing will be supported in upcoming updates, enabling true multimodal travel planning.
