@@ -1,6 +1,8 @@
 import { getTrains } from './train_api';
 import { getFare } from './trainFare';
 
+const { getTrains } = require('./train_api');
+const { getFare } = require('./trainFare');
 const getMinFare = async function (from, to, date) {
   const trains = await getTrains(from, to, date);
 
@@ -20,6 +22,10 @@ const getMinFare = async function (from, to, date) {
   }
 
   return bestTrain ? [bestTrain] : [];
+};
+
+module.exports = {
+  getMinFare: getMinFare,
 };
 
 //Sample bestTrain
