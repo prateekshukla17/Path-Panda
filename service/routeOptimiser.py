@@ -2,6 +2,27 @@ import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt
 import argparse
+from dotenv import load_dotenv
+from pymongo import MongoClient
+import os
+
+
+load_dotenv()
+
+def data_db():
+    mongo_url = os.getenv("mongoURL")
+    client = MongoClient(mongo_url)
+    db = client['RouteWise']
+    collections = db["routewise"]
+    print('Connected to the Database')
+
+    data = list(collections.find())
+
+
+    df = pd.DataFrame(data)
+
+
+    return df
 
 
 def load_data(csv_file):
@@ -55,7 +76,7 @@ def main():
 
     args = parse_arguments()
 
-    data = load_data('data.csv')
+    data = data_db()
     
 
     graph = build_graph(data)

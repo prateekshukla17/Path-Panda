@@ -1,8 +1,6 @@
 import { getTrains } from './train_api';
 import { getFare } from './trainFare';
 
-const cites = ['CNB', 'LKO', 'AGC', 'NDLS', 'UMB', 'PTA', 'CDG'];
-
 const getMinFare = async function (from, to, date) {
   const trains = await getTrains(from, to, date);
 
